@@ -32,9 +32,8 @@ $(function() {
          * and that the URL is not empty.
          */
         it('should have a url defined', function() {
-            for (i = 0; i < allFeeds.length; i++) {
-                expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url).not.toBe(null);
+            for (var i = 0; i < allFeeds.length; i++) {
+                expect(allFeeds[i].url.length).not.toBe(0);
             }
         });
 
@@ -43,9 +42,8 @@ $(function() {
          * and that the name is not empty.
          */
         it('should have a name defined', function() {
-            for (i = 0; i < allFeeds.length; i++) {
-                expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name).not.toBe(null);
+            for (var i = 0; i < allFeeds.length; i++) {
+                expect(allFeeds[i].name.length).not.toBe(0);
             }
         });
     });
@@ -59,7 +57,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
         it('is hidden by default', function() {
-            expect($(".menu-hidden").length).not.toBe(0);
+            expect($('.menu-hidden').length).not.toBe(0);
         });
          /* This test ensures that the menu changes
           * visibility when the menu icon is clicked. This test
@@ -68,9 +66,9 @@ $(function() {
           */
         it('is shown then hides again', function() {
             $('.menu-icon-link').trigger('click');
-            expect($(".menu-hidden").length).toBe(0);
+            expect($('.menu-hidden').length).toBe(0);
             $('.menu-icon-link').trigger('click');
-            expect($(".menu-hidden").length).not.toBe(0);
+            expect($('.menu-hidden').length).not.toBe(0);
         });
             
     });
@@ -85,14 +83,11 @@ $(function() {
          */
    
         beforeEach(function(done) {
-            loadFeed(0, function() {
-                done();
-            });
+            loadFeed(0, done);
         });
 
-        it('has at least one entry', function(done) {
-            expect($(".feed").children().length).not.toBe(0);
-            done();
+        it('has at least one entry', function() {
+            expect($('.entry').length).not.toBe(0);
         });
     });
 
@@ -102,10 +97,7 @@ $(function() {
          * by the asynchronous loadFeed function that the content actually changes.
          */
 
-        var feed0;
-        var feed1;
-        var feed2;
-        var feed3;
+        var feed0, feed1, feed2, feed3;
         
         beforeEach(function(done) {
             loadFeed(0, function() {
